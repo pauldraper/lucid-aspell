@@ -1,6 +1,6 @@
 // Based off the work by: https://github.com/samiljan/aspell-android
 
-#include "Aspell.h"
+#include "com_lucidchart_aspell_Aspell.h"
 #include <aspell.h>
 #include <algorithm>
 #include <sstream>

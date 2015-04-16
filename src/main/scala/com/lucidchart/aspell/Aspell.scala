@@ -20,8 +20,8 @@ class Aspell {
 
 case class WordSuggestions(word: String, valid: Boolean, suggestions: Array[String])
 
-object Aspell { 
-  System.loadLibrary("lucidaspell")
+object Aspell {
+  NativeLibraryLoader.load(s"/${BuildInfo.libraryName}.so")
   def check(language: String, words: Array[String], userWords: Array[String]): Array[WordSuggestions] = {
     val aspell = new Aspell
     aspell.init(language)
