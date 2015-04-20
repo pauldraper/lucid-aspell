@@ -1,0 +1,9 @@
+language: scala
+script:
+  - cd lucid-aspell
+  - sbt compile jniCompile
+compiler:
+  - gcc
+install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -qq libaspell-dev libaspell15 aspell

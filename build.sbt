@@ -32,7 +32,7 @@ dependencyClasspath in Test ++= (exportedProducts in Native).value
 
 exportJars := true
 
-Jni.Keys.includes ++= Seq("-laspell")
+Jni.Keys.includes ++= Seq("-Wl,--no-as-needed -Wl,-rpath,/usr/lib -Wl,-rpath,/usr/local/lib -L/usr/lib -L/usr/local/lib -laspell")
 
 Jni.Keys.libraryName := s"lucidaspell-${version.value}"
 
