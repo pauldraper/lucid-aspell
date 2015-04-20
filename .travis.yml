@@ -1,6 +1,5 @@
 language: scala
 script:
-  - cd lucid-aspell
   - sbt compile jniCompile
 compiler:
   - gcc
