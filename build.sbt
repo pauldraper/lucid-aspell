@@ -9,6 +9,8 @@ lazy val aspell = (project in file("."))
 
 Jni.settings
 
+sonatypeSettings
+
 inConfig(Native)(Defaults.configSettings ++ Defaults.packageConfig)
 
 addArtifact(artifact in (Native, packageBin), packageBin in Native)
@@ -99,5 +101,5 @@ resourceGenerators in Native +=
 
 scalaVersion := "2.10.5"
 
-version := "2.0-SNAPSHOT"
+version := "2.0"
 
