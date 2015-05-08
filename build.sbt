@@ -101,5 +101,22 @@ resourceGenerators in Native +=
 
 scalaVersion := "2.10.5"
 
-version := "2.0"
+version := "2.0.0"
 
+pomIncludeRepository := { _ => false }
+
+useGpg := true
+
+pgpReadOnly := false
+
+publishMavenStyle := true
+
+credentials += Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.org", System.getenv("SONATYPE_USERNAME"), System.getenv("SONATYPE_PASSWORD"))
+
+publishTo <<= version { (v: String) =>
+  val nexus = "https://oss.sonatype.org/"
+  if (v.trim.endsWith("SNAPSHOT"))
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  else
+    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+}
