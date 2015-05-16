@@ -9,8 +9,6 @@ lazy val aspell = (project in file("."))
 
 Jni.settings
 
-sonatypeSettings
-
 inConfig(Native)(Defaults.configSettings ++ Defaults.packageConfig)
 
 addArtifact(artifact in (Native, packageBin), packageBin in Native)
@@ -21,7 +19,7 @@ buildInfoKeys := Seq[BuildInfoKey](Jni.Keys.libraryName)
 
 buildInfoPackage := "com.lucidchart.aspell"
 
-crossScalaVersions := Seq("2.10.5", "2.11.5")
+crossScalaVersions := Seq("2.10.5", "2.11.6")
 
 credentials += Credentials(
   "Sonatype Nexus Repository Manager",
