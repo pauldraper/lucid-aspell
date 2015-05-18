@@ -1,8 +1,27 @@
-language: scala
-script:
-  - sbt compile jniCompile
-compiler:
-  - gcc
-install:
+after_success:
+  - |
+    if [ -n "$TRAVIS_TAG" ]; then
+        sbt ++$TRAVIS_SCALA_VERSION publishSigned native:publishSigned sonatypeRelease
+    elif [ "$TRAVIS_BRANCH" == master ]; then
+        sbt ++$TRAVIS_SCALA_VERSION publishSigned native:publishSigned
+    fi
+before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq libaspell-dev libaspell15 aspell
+deploy:
+  api_key: $GITHUB_AUTH
+  file: target/**.jar
+  file_glob: true
+  on:
+    repo: lucidsoftware/lucid-aspell
+    tags: true
+  provider: releases
+install:
+  - sudo apt-get install gcc libaspell-dev libaspell15 aspell
+jdk:
+  - openjdk6
+language: scala
+scala:
+  - 2.10.5
+  - 2.11.6
+script:
+  - sbt ++$TRAVIS_SCALA_VERSION package native:package
