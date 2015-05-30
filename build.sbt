@@ -103,9 +103,9 @@ version := "2.0.0"
 
 pomIncludeRepository := { _ => false }
 
-useGpg := true
+pgpPublicRing := file(System.getProperty("user.home")) / ".pgp" / "pubring"
 
-pgpReadOnly := false
+pgpSecretRing := file(System.getProperty("user.home")) / ".pgp" / "secring"
 
 publishMavenStyle := true
 
