@@ -1,8 +1,14 @@
 after_success:
   - |
     if [ -n "$TRAVIS_TAG" ]; then
+        mkdir ~/.pgp
+        echo $PGP_PUBLIC | base64 --decode > ~/.pgp/pubring
+        echo $PGP_SECRET | base64 --decode > ~/.pgp/secring
         sbt ++$TRAVIS_SCALA_VERSION publishSigned native:publishSigned sonatypeRelease
     elif [ "$TRAVIS_BRANCH" == master ]; then
+        mkdir ~/.pgp
+        echo $PGP_PUBLIC | base64 --decode > ~/.pgp/pubring
+        echo $PGP_SECRET | base64 --decode > ~/.pgp/secring
         sbt ++$TRAVIS_SCALA_VERSION publishSigned native:publishSigned
     fi
 before_install:
