@@ -99,7 +99,7 @@ resourceGenerators in Native +=
 
 scalaVersion := "2.10.5"
 
-version := "2.0.0"
+version := "2.1.0-SNAPSHOT"
 
 pomIncludeRepository := { _ => false }
 
